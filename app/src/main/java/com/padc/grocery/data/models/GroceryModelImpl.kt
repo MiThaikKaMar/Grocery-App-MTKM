@@ -1,12 +1,13 @@
 package com.padc.grocery.data.models
 
+import android.graphics.Bitmap
 import com.padc.grocery.data.vos.GroceryVO
 import com.padc.grocery.network.CloudFirestoreFirebaseApiImpl
 import com.padc.grocery.network.FirebaseApi
 import com.padc.grocery.network.RealtimeDatabaseFirebaseApiImpl
 
 object GroceryModelImpl : GroceryModel {
-//    override var mFirebaseApi: FirebaseApi = RealtimeDatabaseFirebaseApiImpl
+    //override var mFirebaseApi: FirebaseApi = RealtimeDatabaseFirebaseApiImpl
 
     override var mFirebaseApi : FirebaseApi = CloudFirestoreFirebaseApiImpl
 
@@ -14,8 +15,8 @@ object GroceryModelImpl : GroceryModel {
         mFirebaseApi.getGroceries(onSuccess, onFaiure)
     }
 
-    override fun addGrocery(name: String, description: String, amount: Int) {
-        mFirebaseApi.addGrocery(name, description, amount)
+    override fun addGrocery(name: String, description: String, amount: Int, image : String) {
+        mFirebaseApi.addGrocery(name, description, amount,image)
     }
 
     override fun removeGrocery(name: String) {
@@ -24,5 +25,9 @@ object GroceryModelImpl : GroceryModel {
 
     override fun editGrocery(name: String, description: String, amount: Int) {
 
+    }
+
+    override fun updateImgAndEditGrocery(image: Bitmap, grocery: GroceryVO) {
+        mFirebaseApi.updateImgAndEditGrocery(image,grocery)
     }
 }
